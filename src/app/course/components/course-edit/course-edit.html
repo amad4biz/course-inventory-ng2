@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-block">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-default">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>P.Book</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <form class="form-inline" #form="ngForm" (ngSubmit)="editCourse(course)" style="display:inline">
+
+                        <td>
+                            <input class="form-control" type="text" name="name" [(ngModel)]="course.name" placeholder="Name" required>
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" name="age" [(ngModel)]="course.price" placeholder="Age" min="0" required>
+                        </td>
+                        <th>
+                            <input class="form-control" type="number" name="weight" [(ngModel)]="course.weight" placeholder="Weight" step="any" min="0"
+                                required>
+                        </th>
+                        <th>
+                            <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+                        </th>
+                    </form>
+                    <th>
+                        <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+            <strong>Message:</strong> {{infoMsg.body}}
+        </div>
+    </div>
+</div>

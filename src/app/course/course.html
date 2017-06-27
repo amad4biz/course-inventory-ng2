@@ -1,0 +1,51 @@
+<div class="card" *ngIf="!isEditing">
+    <h5 class="card-header">Current courses ({{courses.length}})</h5>
+    <div class="card-block">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-default">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>P.Book</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody *ngIf="courses.length === 0">
+                <tr>
+                    <td colspan="4">There are no courses in the DB. Add a new courses below.</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr *ngFor="let course of courses">
+                    <td>{{course.id}}</td>
+                    <td>{{course.name}}</td>
+                    <th>{{course.price}}</th>
+                    <th>
+                        <select name="select" id="select" class="item-select" [(ngModel)]="course.mendetoryBookName">
+                            <!--  <option [ngValue]="undefined" [selected]  disabled > Select item per page </option>-->
+                            <option *ngFor="let book of course of course ; let i = index" [ngValue]="book.name"> 
+                                          {{book.name}}
+                            </option>
+                        </select></th>
+                    <th>
+                        <button class="btn btn-sm btn-warning" (click)="enableEditing(course)"><i class="fa fa-pencil"></i> Edit</button>
+                    </th>
+                    <th>
+                        <button class="btn btn-sm btn-danger" (click)="deleteCourse(course)"><i class="fa fa-trash"></i> Delete</button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <div [hidden]="!infoMsg.body" class="alert alert-{{infoMsg.type}} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+            <strong>Message:</strong> {{infoMsg.body}}
+        </div>
+    </div>
+</div>
+<course-edit *ngIf="isEditing" [course]="course"> </course-edit>
+<course-add (courseAdd)="addNewCourse($event)"> </course-add>
