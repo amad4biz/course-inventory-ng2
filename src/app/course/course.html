@@ -10,7 +10,6 @@
                     <th>P.Book</th>
                     <th></th>
                     <th></th>
-
                 </tr>
             </thead>
             <tbody *ngIf="courses.length === 0">
@@ -47,5 +46,5 @@
         </div>
     </div>
 </div>
-<course-edit *ngIf="isEditing" [course]="course" (courseEditCancel)="cancelEdit($event)"> </course-edit>
-<course-add (courseAdd)="addNewCourse($event)"> </course-add>
+<course-edit *ngIf="isEditing" [course]="course"  (courseEditEvent)="editCourse($event)" (courseEditCancelEvent)="cancelEdit($event)"> </course-edit>
+<course-add *ngIf="!isEditing" (courseAddEvent)="addCourse($event)"> </course-add>

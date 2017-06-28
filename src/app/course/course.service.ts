@@ -24,7 +24,6 @@ export class CourseService {
     constructor() { }
 
     getMockCourses(): Course[] {
-        //console.log(COURSES);
         return COURSES;
     }
 
@@ -36,19 +35,13 @@ export class CourseService {
 
     /*setMockCourses() {
         this.getMockCourses().then(mockCourses => {
-            //console.log(mockCourses);
-            //this.courses = mockCourses;
-
             this.courses = mockCourses;
             //this.courses = mockCourses.slice(1, 5);
 
-            console.log("courses");
-            console.log(this.courses);
         });
     }*/
 
     getMockBooks(): Book[] {
-        //console.log(BOOKS);
         return BOOKS;
     }
 
@@ -61,14 +54,8 @@ export class CourseService {
 
     setMockBooks() {
         this.getMockBooks().then(mockBooks => {
-            //console.log(mockCourses);
-            //this.courses = mockCourses;
-
             this.books = mockBooks;
             //this.books = mockBooks.slice(1, 5);
-
-            console.log("books");
-            console.log(this.books);
         });
     }*/
 
@@ -91,20 +78,20 @@ export class CourseService {
     }
 
 
-    /* getCats() {
-         return this.http.get('/cats').map(res => res.json());
-     }
- 
-     addCat(cat) {
-         return this.http.post("/cat", JSON.stringify(cat), this.options);
-     }
- 
-     editCat(cat) {
-         return this.http.put("/cat/" + cat._id, JSON.stringify(cat), this.options);
-     }
- 
-     deleteCat(cat) {
-         return this.http.delete("/cat/" + cat._id, this.options);
-     }*/
+    addCourse(newCourse) {
+        this.coursesView.push(newCourse);
+        return this.coursesView;
+    }
 
+    deleteCourse(course) {
+        var pos = this.coursesView.map(course => { return course.id }).indexOf(course.id);
+        this.coursesView.splice(pos, 1);
+        return this.coursesView;
+    }
+
+    editCourse(course) {
+        let foundIndex = this.coursesView.findIndex(x => x.id == course.id);
+        this.coursesView[foundIndex] = course;
+        return this.coursesView;
+    }
 }

@@ -17,7 +17,7 @@ import { Course } from '../../../shared/model/course.model';
 export class CourseAddComponent {
 
 	@Output()
-	courseAdd: EventEmitter<any> = new EventEmitter();
+	courseAddEvent: EventEmitter<any> = new EventEmitter();
 
 	private course = {};
 	private addCourseForm: FormGroup;
@@ -40,7 +40,7 @@ export class CourseAddComponent {
 
 
 	addCourse() {
-		this.courseAdd.emit(this.addCourseForm.value)
+		this.courseAddEvent.emit(this.addCourseForm.value)
 		this.addCourseForm.reset();
 		//this.sendInfoMsg("item added successfully.", "success");
 	}

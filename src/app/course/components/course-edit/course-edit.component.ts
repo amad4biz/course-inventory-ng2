@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Http } from '@angular/http';
 
 @Component({
 	selector: 'course-edit',
@@ -11,9 +10,12 @@ import { Http } from '@angular/http';
 
 export class CourseEditComponent implements OnInit {
 
+	@Output()
+	courseEditEvent: EventEmitter<any> = new EventEmitter();
 
 	@Output()
-	courseEditCancel: EventEmitter<any> = new EventEmitter();
+	courseEditCancelEvent: EventEmitter<any> = new EventEmitter();
+
 	public _course: any = {};
 
 	@Input()
@@ -25,22 +27,20 @@ export class CourseEditComponent implements OnInit {
 		return this._course;
 	}
 
-
-	private isEditing = false;
-
-
 	private infoMsg = { body: "", type: "info" };
 
-	constructor(private http: Http,
-	) { }
+	constructor() { }
 
 	ngOnInit() {
 
 	}
 
 	cancelEditing() {
-		//this.addCourseForm.reset();
-		this.courseEditCancel.emit();
+		this.courseEditCancelEvent.emit();
+
 	}
 
+	editCourse() {
+		this.courseEditEvent.emit();
+	}
 }

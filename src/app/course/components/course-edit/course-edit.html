@@ -24,7 +24,7 @@
                         <input class="form-control" type="number" name="id" [(ngModel)]="course.id" placeholder="id" step="any" min="0" required>
                     </th>
                     <th>
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                        <button class="btn btn-sm btn-primary" type="submit" (click)="editCourse()"><i class="fa fa-floppy-o"></i> Update</button>
                     </th>
 
                     <th>

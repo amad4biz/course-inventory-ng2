@@ -24,7 +24,6 @@ export class CourseComponent implements OnInit {
 	//private coursesView: CourseView[] = [];
 	//private bookView: CourseView[] = [];
 
-
 	private isLoading = true;
 	private course = {};
 	private isEditing = false;
@@ -47,23 +46,26 @@ export class CourseComponent implements OnInit {
 
 
 	deleteCourse(course) {
+
 		if (window.confirm("Are you sure you want to permanently delete this item?")) {
-			var pos = this.courses.map(course => { return course.id }).indexOf(course.id);
-			this.courses.splice(pos, 1);
-			this.sendInfoMsg("item deleted successfully.", "success");
+			try {
+				this.courses = this.inventoryService.deleteCourse(course);
+				this.sendInfoMsg("item deleted successfully.", "success");
+			}
+			catch (exp) {
+				this.sendInfoMsg("ERROR.", +exp);
+			}
 		}
 	}
 
-	addNewCourse(newCourse) {
-
-		this.courses.push(newCourse);
-		this.sendInfoMsg("item added successfully.", "success");
-	}
-
-	sendInfoMsg(body, type, time = 3000) {
-		this.infoMsg.body = body;
-		this.infoMsg.type = type;
-		window.setTimeout(() => this.infoMsg.body = "", time);
+	addCourse(newCourse) {
+		try {
+			this.courses = this.inventoryService.addCourse(newCourse);
+			this.sendInfoMsg("item added successfully.", "success");
+		}
+		catch (exp) {
+			this.sendInfoMsg("ERROR.", +exp);
+		}
 	}
 
 	enableEditing(course) {
@@ -72,8 +74,23 @@ export class CourseComponent implements OnInit {
 	}
 
 	cancelEdit() {
-		console.log("click");
-
 		this.isEditing = false;
+	}
+
+	editCourse() {
+		try {
+			this.courses = this.inventoryService.editCourse(this.course);
+			this.isEditing = false;
+			this.sendInfoMsg("item edited successfully.", "success");
+		}
+		catch (exp) {
+			this.sendInfoMsg("ERROR.", +exp);
+		}
+	}
+	
+	sendInfoMsg(body, type, time = 2000) {
+		this.infoMsg.body = body;
+		this.infoMsg.type = type;
+		window.setTimeout(() => this.infoMsg.body = "", time);
 	}
 }
