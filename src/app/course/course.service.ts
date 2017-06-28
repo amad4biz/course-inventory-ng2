@@ -24,7 +24,7 @@ export class CourseService {
     constructor() { }
 
     getMockCourses(): Course[] {
-        console.log(COURSES);
+        //console.log(COURSES);
         return COURSES;
     }
 
@@ -48,7 +48,7 @@ export class CourseService {
     }*/
 
     getMockBooks(): Book[] {
-        console.log(BOOKS);
+        //console.log(BOOKS);
         return BOOKS;
     }
 

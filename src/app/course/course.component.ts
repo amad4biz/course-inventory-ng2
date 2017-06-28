@@ -42,12 +42,7 @@ export class CourseComponent implements OnInit {
 
 	getCourses() {
 		this.courses = this.inventoryService.getCourses();
-		console.log(this.courses);
-	}
-
-	enableEditing(course) {
-		this.isEditing = true;
-		this.course = course;
+		//console.log(this.courses);
 	}
 
 
@@ -71,4 +66,14 @@ export class CourseComponent implements OnInit {
 		window.setTimeout(() => this.infoMsg.body = "", time);
 	}
 
+	enableEditing(course) {
+		this.isEditing = true;
+		this.course = course;
+	}
+
+	cancelEdit() {
+		console.log("click");
+
+		this.isEditing = false;
+	}
 }

@@ -24,9 +24,9 @@
                     <td>{{course.name}}</td>
                     <th>{{course.price}}</th>
                     <th>
-                        <select name="select" id="select" class="item-select" [(ngModel)]="course.mendetoryBookName">
+                        <select name="select" id="select" class="item-select">
                             <!--  <option [ngValue]="undefined" [selected]  disabled > Select item per page </option>-->
-                            <option *ngFor="let book of course of course ; let i = index" [ngValue]="book.name"> 
+                            <option *ngFor="let book of course.books; let i = index" [ngValue]="book.name"> 
                                           {{book.name}}
                             </option>
                         </select></th>
@@ -47,5 +47,5 @@
         </div>
     </div>
 </div>
-<course-edit *ngIf="isEditing" [course]="course"> </course-edit>
+<course-edit *ngIf="isEditing" [course]="course" (courseEditCancel)="cancelEdit($event)"> </course-edit>
 <course-add (courseAdd)="addNewCourse($event)"> </course-add>
