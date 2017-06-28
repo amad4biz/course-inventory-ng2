@@ -7,9 +7,11 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>P.Book</th>
+                    <th>Books</th>
                     <th></th>
                     <th></th>
+                    <th></th>
+                    
                 </tr>
             </thead>
             <tbody *ngIf="courses.length === 0">
@@ -28,7 +30,11 @@
                             <option *ngFor="let book of course.books; let i = index" [ngValue]="book.name"> 
                                           {{book.name}}
                             </option>
-                        </select></th>
+                        </select>
+                    </th>
+                    <th>
+                        <button class="btn btn-sm btn-primary" (click)="buyCourse(course)"><i class="fa fa-pencil"></i> Buy</button>
+                    </th>
                     <th>
                         <button class="btn btn-sm btn-warning" (click)="enableEditing(course)"><i class="fa fa-pencil"></i> Edit</button>
                     </th>
@@ -46,5 +52,6 @@
         </div>
     </div>
 </div>
-<course-edit *ngIf="isEditing" [course]="course"  (courseEditEvent)="editCourse($event)" (courseEditCancelEvent)="cancelEdit($event)"> </course-edit>
+<course-edit *ngIf="isEditing" [course]="course" (courseEditEvent)="editCourse($event)" (courseEditCancelEvent)="cancelEdit($event)">
+</course-edit>
 <course-add *ngIf="!isEditing" (courseAddEvent)="addCourse($event)"> </course-add>

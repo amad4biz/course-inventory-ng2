@@ -13,16 +13,16 @@
             </thead>
             <tbody>
                 <tr>
-
+                    <th>
+                        <input class="form-control" type="number" name="id" [(ngModel)]="course.id" placeholder="id" step="any" min="0" disabled required>
+                    </th>
                     <td>
                         <input class="form-control" type="text" name="name" [(ngModel)]="course.name" placeholder="Name" required>
                     </td>
                     <td>
-                        <input class="form-control" type="number" name="age" [(ngModel)]="course.price" placeholder="Age" min="0" required>
+                        <input class="form-control" type="number" name="price" [(ngModel)]="course.price" placeholder="Price" min="0" required>
                     </td>
-                    <th>
-                        <input class="form-control" type="number" name="id" [(ngModel)]="course.id" placeholder="id" step="any" min="0" required>
-                    </th>
+
                     <th>
                         <button class="btn btn-sm btn-primary" type="submit" (click)="editCourse()"><i class="fa fa-floppy-o"></i> Update</button>
                     </th>
